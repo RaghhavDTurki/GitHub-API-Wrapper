@@ -1,0 +1,26 @@
+import { Router } from "express";
+import { getReposWithRecentCommitsByOwner } from "./repository/commits/commitsByOwner";
+import { getReposWithRecentCommitsByAnyone } from "./repository/commits/commitsInRepo";
+import { getContributors } from "./repository/contributors/getContributors";
+import { createRepository } from "./repository/createRepository";
+import { getRepositoryWith5StarsAnd5Forks, listRepository } from "./repository/listRepository";
+import { getStargazers } from "./repository/stargazers/getStargazers";
+import { getStargazersWithExactly2Stars } from "./repository/stargazers/getStargazerWithExactly2Stars";
+import { getStargazersWithMoreThan2Stars } from "./repository/stargazers/getStargazerWithMoreThan2Stars";
+import { deleteRepoTopics } from "./repoTopics/deleteRepoTopics";
+import { listRepoTopics } from "./repoTopics/listRepoTopics";
+import { updateRepoTopics } from "./repoTopics/updateRepoTopics";
+
+export const route: Router = Router();
+route.post("/repository/create", createRepository);
+route.post("/repository/list", listRepository);
+route.post("/repository/topics/list", listRepoTopics);
+route.post("/repository/topics/update", updateRepoTopics);
+route.post("/repository/topics/delete", deleteRepoTopics);
+route.post("/repository/contributors", getContributors);
+route.post("/repository/stargazers", getStargazers);
+route.post("/repository/with5starsand5forks", getRepositoryWith5StarsAnd5Forks);
+route.post("/repository/commitsByOwner", getReposWithRecentCommitsByOwner);
+route.post("/repository/commitsByAnyone", getReposWithRecentCommitsByAnyone);
+route.post("/repository/starGazersWithMoreThan2Stars", getStargazersWithMoreThan2Stars);
+route.post("/repository/stargazersWithExactly2Stars", getStargazersWithExactly2Stars);
